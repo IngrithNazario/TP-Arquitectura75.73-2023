@@ -1,0 +1,17 @@
+{
+  "name": "TP-ARQUITECTURA75.73-2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "artillery": "artillery",
+    "node": "artillery run root.yaml -e node",
+    "scenario": "./run-scenario.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "artillery": "2.0.0-14",
+    "artillery-plugin-statsd": "^2.2.1"
+  }
+}
