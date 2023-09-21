@@ -8,8 +8,7 @@ const parser = new XMLParser();
 const metarRoute = express.Router();
 
 metarRoute.get("/metar", (req, res) => {
-    let station = req.query.station;
-    console.log(station);
+    let station = req.query.station;ç;
     //Consultamos a la API de NOAA
     const url = 'https://www.aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=' + station + '&hoursBeforeNow=1';
     getMetar(url, res);
