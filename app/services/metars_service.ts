@@ -1,9 +1,9 @@
-import { metarAPI, MetarConfig } from '../apis';
+import { metarsAPI, MetarConfig } from '../apis';
 import { Status } from '../utils';
 import { decode } from 'metar-decoder';
 
 const getMetars = async (metarConfig: MetarConfig) => {
-    const result = await metarAPI.retriveMetars(metarConfig);
+    const result = await metarsAPI.retriveMetars(metarConfig);
 
     if (result.status === Status.Success) {
         const data = (result as any).data;

@@ -43,8 +43,8 @@ const _makeURL = (metarConfig: MetarConfig) => {
     return url;
 }
 
-const metarAPI = {
+const metarsAPI = {
     retriveMetars,
 };
 
-export { metarAPI, MetarConfig };
+export { metarsAPI, MetarConfig };
