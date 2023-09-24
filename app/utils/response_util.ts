@@ -30,7 +30,7 @@ const Issue: { [key: string]: Error } = {
     }
 }
 
-const _createResponse = (status: Status, data: any | Fail | Error) => {
+const _createResponse = (status: Status, data: any) => {
     return {
         status,
         data,
@@ -40,14 +40,8 @@ const _createResponse = (status: Status, data: any | Fail | Error) => {
 const createSuccessResponse = (data: any) => _createResponse(Status.Success, data)
 const createFailResponse = (data: Fail[]) => _createResponse(Status.Fail, data)
 const createErrorResponse = (data: Error) => _createResponse(Status.Error, data)
-const createExceptionResponse = (error: Error) => {
-    return {
-        status: Status.Exception,
-        error,
-    }
-};
 
 export { 
-    createSuccessResponse, createFailResponse, createErrorResponse, createExceptionResponse,
+    createSuccessResponse, createFailResponse, createErrorResponse,
     Status, Fail, Error, Issue
 };

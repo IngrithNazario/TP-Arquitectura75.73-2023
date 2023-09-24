@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const GetMetarSchema = z.object({
     query: z.object({
-        station: z.string().optional(),
+        station: z.string(),
     })
 });
 
