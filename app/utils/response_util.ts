@@ -18,16 +18,11 @@ interface Error {
 }
 
 const Issue: { [key: string]: Error } = {
-    UnknownError: {
-        code: 'unknown_error',
-        error: 'Unknown Error',
-        message: 'An unknown error has occurred',
-    },
     InternalServerError: {
         code: 'internal_server_error',
         error: 'Internal Server Error',
         message: '',
-    }
+    },
 }
 
 const _createResponse = (status: Status, data: any) => {

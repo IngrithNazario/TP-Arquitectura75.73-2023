@@ -1,11 +1,11 @@
+import httpStatus from 'http-status';
 import { metarsAPI, MetarConfig } from '../apis';
-import { Status } from '../utils';
 import { decode } from 'metar-decoder';
 
 const getMetars = async (metarConfig: MetarConfig) => {
     const result = await metarsAPI.retriveMetars(metarConfig);
 
-    if (result.status === Status.Success) {
+    if (result.statusCode === httpStatus.OK) {
         const data = (result as any).data;
         const dataList = [];
         if (Array.isArray(data)) {
@@ -13,9 +13,9 @@ const getMetars = async (metarConfig: MetarConfig) => {
         } else {
             dataList.push(decode(data.raw_text));
         }
-        return { status: result.status, data: dataList };
+        return { statusCode: result.statusCode, data: dataList };
     }
-    return result;
+    return { statusCode: result.statusCode, error: (result as any).error };
 }
 
 const metarsService = {

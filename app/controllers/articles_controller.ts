@@ -1,24 +1,23 @@
 import httpStatus from 'http-status';
-import { Response } from 'express';
-import { GetMetarType } from './schemas';
-import { responseUtils, Error } from '../utils';
+import { Request, Response } from 'express';
 import { createErrorResponse, Issue } from '../utils/response_util';
-import { metarsService } from '../services/metars_service';
+import { articlesService } from '../services/articles_service';
+import { responseUtils } from '../utils';
 
-const getMetars = async (request: GetMetarType, response: Response) => {
+const getArticles = async (_request: Request, response: Response) => {
     try {
-        const metarConfig = {
-            stationString: request.query.station,
-            hoursBeforeNow: 1,
+        const articlesConfig = {
+            limit: 5,
+            ordering: '-published_at',
         }
     
-        const result = await metarsService.getMetars(metarConfig);
-        if (result.statusCode === httpStatus.OK) {
-            const data = result.data;
+        const articles = await articlesService.getArticles(articlesConfig);
+        if (articles.statusCode === httpStatus.OK) {
+            const data = articles.data;
             const successResponse = responseUtils.createSuccessResponse(data);
-            response.status(result.statusCode).send(successResponse);
+            response.status(articles.statusCode).send(successResponse);
         } else {
-            const data = result.error as Error;
+            const data = articles.error;
             const errorResponse = responseUtils.createErrorResponse(data);
             response.status(response.statusCode).send(errorResponse);
         }
@@ -31,8 +30,8 @@ const getMetars = async (request: GetMetarType, response: Response) => {
     }
 }
 
-const metarsController = {
-    getMetars,
+const articlesController = {
+    getArticles,
 }
 
-export { metarsController };
+export { articlesController };
