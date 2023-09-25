@@ -30,7 +30,7 @@ const retriveMetars = async (metarConfig: MetarConfig) : Promise<{ statusCode: n
         }
         
         console.log(response);
-        const error = { code: 'internal_server_error', error: 'Internal Server Error', message: '' };
+        const error = { code: 'internal_server_error', error: 'Internal Server Error', message: 'An internal error occurred during processing' };
         return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, error };
     } catch(error) {
         if (axios.isAxiosError(error)) {

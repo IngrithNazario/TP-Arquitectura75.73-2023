@@ -1,3 +1,4 @@
+import httpStatus from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 import { responseUtils, zodUtils } from '../utils';
 import { z, ZodError } from 'zod';
@@ -17,7 +18,7 @@ const validateRequest = <T extends z.ZodTypeAny>(schema: T) => (
     } catch (error) {
         if (error instanceof ZodError) {
             const parsedError =  zodUtils.parseZodError(error);
-            response.status(400).send(responseUtils.createFailResponse(parsedError));
+            response.status(httpStatus.BAD_REQUEST).send(responseUtils.createFailResponse(parsedError));
         } else {
             throw error;
         }

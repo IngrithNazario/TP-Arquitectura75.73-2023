@@ -1,25 +1,24 @@
 import httpStatus from 'http-status';
 import { Request, Response } from 'express';
 import { createErrorResponse, Issue } from '../utils/response_util';
-import { articlesService } from '../services/articles_service';
 import { responseUtils } from '../utils';
+import { quotesService } from '../services';
 
-const getArticles = async (_request: Request, response: Response) => {
+const getQuotes = async (_request: Request, response: Response) => {
     try {
-        const articlesConfig = {
-            limit: 5,
-            ordering: '-published_at',
+        const quotesConfig = {
+            limit: 1,
         }
     
-        const articles = await articlesService.getArticles(articlesConfig);
-        if (articles.statusCode === httpStatus.OK) {
-            const data = articles.data;
+        const quotes = await quotesService.getQuotes(quotesConfig);
+        if (quotes.statusCode === httpStatus.OK) {
+            const data = quotes.data;
             const successResponse = responseUtils.createSuccessResponse(data);
-            response.status(articles.statusCode).send(successResponse);
+            response.status(quotes.statusCode).send(successResponse);
         } else {
-            const data = articles.error;
+            const data = quotes.error;
             const errorResponse = responseUtils.createErrorResponse(data);
-            response.status(articles.statusCode).send(errorResponse);
+            response.status(quotes.statusCode).send(errorResponse);
         }
     } catch (exception: any) {
         const { name, message } = exception;
@@ -30,8 +29,8 @@ const getArticles = async (_request: Request, response: Response) => {
     }
 }
 
-const articlesController = {
-    getArticles,
+const quotesController = {
+    getQuotes,
 }
 
-export { articlesController };
+export { quotesController };

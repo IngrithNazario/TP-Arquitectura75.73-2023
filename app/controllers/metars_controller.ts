@@ -20,7 +20,7 @@ const getMetars = async (request: GetMetarType, response: Response) => {
         } else {
             const data = result.error as Error;
             const errorResponse = responseUtils.createErrorResponse(data);
-            response.status(response.statusCode).send(errorResponse);
+            response.status(result.statusCode).send(errorResponse);
         }
     } catch (exception: any) {
         const { name, message } = exception;

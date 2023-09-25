@@ -21,7 +21,7 @@ const Issue: { [key: string]: Error } = {
     InternalServerError: {
         code: 'internal_server_error',
         error: 'Internal Server Error',
-        message: '',
+        message: 'An internal error occurred during processing',
     },
 }
 
