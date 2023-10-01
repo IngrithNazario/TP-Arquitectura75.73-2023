@@ -17,11 +17,11 @@ const retrieveQuotes = async (quotesConfig: QuotesConfig): Promise<{ statusCode:
 
     const data = response.data;
     if (response.status === httpStatus.OK) {
-        return { statusCode: httpStatus.OK, data };
+        return { statusCode: response.status, data };
     }
     if (response.status === httpStatus.TOO_MANY_REQUESTS) {
         const error = { code: 'too_many_requests', error: 'Too Many Requests', message: 'The server could not process the requests' };
-        return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, error };            
+        return { statusCode: response.status, error };            
     }
     console.log(data);
     const error = { code: 'internal_server_error', error: 'Internal Server Error', message: 'An internal error occurred during processing' };
