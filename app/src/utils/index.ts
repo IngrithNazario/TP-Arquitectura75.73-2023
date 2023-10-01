@@ -1,8 +1,10 @@
 import { 
     createSuccessResponse, createFailResponse, createErrorResponse,
-    Status, Fail, Error 
+    Status, Fail, Error,
 } from './response_util';
 import { parseZodError } from './zod_util';
+import { executionTime } from './execution_time_util';
+import { statsdClient } from './hot_shots_util';
 
 
 const responseUtils = {
@@ -15,4 +17,4 @@ const zodUtils = {
     parseZodError,
 }
 
-export { responseUtils, zodUtils, Status, Fail, Error };
+export { responseUtils, zodUtils, Status, Fail, Error, executionTime, statsdClient };

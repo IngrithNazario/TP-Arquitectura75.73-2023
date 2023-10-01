@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 import httpStatus from 'http-status';
-import { Error } from '../../utils';
+import { Error, executionTime, statsdClient } from '../../utils';
 
 const baseURL = 'https://www.aviationweather.gov';
 const pathURL = 'adds/dataserver_current/httpparam';
@@ -14,7 +14,9 @@ interface MetarConfig {
 
 const retriveMetars = async (metarConfig: MetarConfig) : Promise<{ statusCode: number, data: any } | { statusCode: number, error: Error }> => {
     const url = _makeURL(metarConfig);
-    const result = await axios.get(url, { validateStatus: () => true });
+    const timeProcessor = (milliseconds: number) => statsdClient.gauge('external-service.metars', milliseconds);
+    const axiosGet = executionTime.measure(axios.get, timeProcessor);
+    const result = await axiosGet(url, { validateStatus: () => true });
     const xmlParser = new XMLParser();
     const response = (xmlParser.parse(result.data) as any).response;
     
