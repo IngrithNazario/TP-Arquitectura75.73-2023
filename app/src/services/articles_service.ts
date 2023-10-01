@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { articlesAPI, ArticlesConfig } from '../apis/spaceflight_news/articles_api';
+import { articlesAPI, ArticlesConfig } from '../apis';
 
 const getArticles = async (articlesConfig: ArticlesConfig) => {
     const response = await articlesAPI.retrieveArticles(articlesConfig);

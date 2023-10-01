@@ -7,7 +7,7 @@
     "start": "node ./build/index.js",
     "clean": "rm -rf ./build",
     "build_start": "npm run build && npm run start",
-    "dev": "ts-node-dev --respawn --transpile-only ./app/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
