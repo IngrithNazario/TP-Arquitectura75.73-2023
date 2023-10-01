@@ -21,7 +21,7 @@ config:
     
 
 scenarios:
-  - name: Spaceflight (/spaceflight_news)
+  - name: Metars
     flow:
       - get:
-          url: '/spaceflight_news'
+          url: '/metar?station=SAEZ'

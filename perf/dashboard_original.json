@@ -3,10 +3,7 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": {
-          "type": "datasource",
-          "uid": "grafana"
-        },
+        "datasource": "-- Grafana --",
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
@@ -16,20 +13,23 @@
     ]
   },
   "editable": true,
-  "fiscalYearStartMonth": 0,
+  "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 1,
+  "iteration": 1616712956688,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+      "datasource": "Graphite",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
       },
       "fill": 7,
       "fillGradient": 0,
@@ -63,7 +63,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.0",
+      "pluginVersion": "7.3.10",
       "pointradius": 5,
       "points": true,
       "renderer": "flot",
@@ -73,10 +73,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
           "refCount": 0,
           "refId": "B",
           "target": "aliasByMetric(stats.gauges.$server.scenarioCounts.*)",
@@ -84,7 +80,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "Scenarios launched (stacked)",
       "tooltip": {
         "shared": true,
@@ -93,7 +91,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -102,16 +102,22 @@
           "format": "rps",
           "label": "",
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -119,16 +125,19 @@
         "Completed": "#7EB26D",
         "Errored": "#BF1B00",
         "Errors count": "#BF1B00",
-        "Limited": "#FDDA0D",
         "Pending": "#447EBC",
-        "Requests completed": "#7EB26D"
+        "Requests completed": "#7EB26D",
+        "Limited": "#FDDA0D"
       },
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+      "datasource": "Graphite",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
       },
       "fill": 7,
       "fillGradient": 0,
@@ -162,7 +171,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.0",
+      "pluginVersion": "7.3.10",
       "pointradius": 5,
       "points": true,
       "renderer": "flot",
@@ -172,46 +181,28 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.$server.codes.200, 'Completed')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "refCount": 0,
           "refId": "B",
           "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
           "textEditor": true
         },
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.$server.pendingRequests, 'O')"
+          "refId": "A",
+          "target": "alias(stats.gauges.$server.codes.200, 'Completed')"
         },
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "refCount": 0,
+          "refId": "C",
+          "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
+        },
+        {
           "refId": "D",
           "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
-      "title": "Requests State (stacked)",
+      "timeShift": null,
+      "title": "Requests state (stacked)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -219,24 +210,33 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -244,9 +244,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+      "datasource": "Graphite",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
@@ -281,7 +284,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.0",
+      "pluginVersion": "7.3.10",
       "pointradius": 5,
       "points": true,
       "renderer": "flot",
@@ -291,27 +294,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
           "refCount": 0,
           "refId": "C",
           "target": "alias(stats.gauges.$server.scenarioDuration.max, 'Upper')"
         },
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
           "refCount": 0,
           "refId": "B",
           "target": "alias(stats.gauges.$server.scenarioDuration.median, 'Median')"
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
-      "title": "Response Time (Client Side)",
+      "timeShift": null,
+      "title": "Response time (client-side)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -319,7 +316,9 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
@@ -328,251 +327,22 @@
           "format": "ms",
           "label": "",
           "logBase": 1,
+          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "short",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 21
-      },
-      "height": "250px",
-      "hiddenSeries": false,
-      "id": 8,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 250,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "10.1.0",
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.hot-shots-api.service.metars.response_time, 'Metars')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(stats.gauges.hot-shots-api.service.spaceflight-news.response_time, 'Spaceflight')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.hot-shots-api.service.quotes.response_time, 'Quotes')"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Response Time (Services)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:33",
-          "format": "ms",
-          "label": "Time",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:34",
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 28
-      },
-      "height": "250px",
-      "hiddenSeries": false,
-      "id": 9,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": true,
-        "hideZero": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": 250,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "connected",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "10.1.0",
-      "pointradius": 5,
-      "points": true,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "A",
-          "target": "alias(stats.gauges.hot-shots-api.external-service.metars.response_time, 'Metars')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(stats.gauges.hot-shots-api.external-service.spaceflight-news.response_time, 'Spaceflight')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "C",
-          "target": "alias(stats.gauges.hot-shots-api.external-service.quotes.response_time, 'Quotes')"
-        }
-      ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Response Time (External Services)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:33",
-          "format": "ms",
-          "label": "Time",
-          "logBase": 1,
-          "min": "0",
-          "show": true
-        },
-        {
-          "$$hashKey": "object:34",
-          "format": "short",
-          "label": "",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     },
     {
@@ -582,9 +352,12 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": {
-        "type": "graphite",
-        "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+      "datasource": "Graphite",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
       },
       "fill": 1,
       "fillGradient": 0,
@@ -592,7 +365,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 35
+        "y": 21
       },
       "height": "250px",
       "hiddenSeries": false,
@@ -620,7 +393,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.0",
+      "pluginVersion": "7.3.10",
       "pointradius": 5,
       "points": true,
       "renderer": "flot",
@@ -635,10 +408,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
           "hide": false,
           "refCount": 0,
           "refId": "C",
@@ -646,10 +415,6 @@
           "textEditor": false
         },
         {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
           "hide": false,
           "refCount": 0,
           "refId": "B",
@@ -657,8 +422,10 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
-      "title": "Resources Usage",
+      "timeShift": null,
+      "title": "Resources",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -666,42 +433,53 @@
       },
       "type": "graph",
       "xaxis": {
+        "buckets": null,
         "mode": "time",
+        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "percent",
+          "label": null,
           "logBase": 1,
+          "max": null,
           "min": "0",
           "show": true
         },
         {
           "format": "Bps",
+          "label": null,
           "logBase": 1,
+          "max": null,
+          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false
+        "align": false,
+        "alignLevel": null
       }
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 38,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
+        "allValue": null,
         "current": {
           "selected": false,
           "text": "artillery-api",
           "value": "artillery-api"
         },
+        "error": null,
         "hide": 0,
         "includeAll": false,
+        "label": null,
         "multi": false,
         "name": "server",
         "options": [
@@ -712,18 +490,20 @@
           }
         ],
         "query": "artillery-api",
-        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
       {
+        "allValue": null,
         "current": {
           "selected": false,
           "text": "tp-arquitectura7573-2023-node-1",
           "value": "tp-arquitectura7573-2023-node-1"
         },
+        "error": null,
         "hide": 0,
         "includeAll": false,
+        "label": null,
         "multi": false,
         "name": "container",
         "options": [
@@ -802,6 +582,5 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 15,
-  "weekStart": ""
+  "version": 3
 }
