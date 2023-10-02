@@ -2,6 +2,12 @@ config:
   environments:
     api:
       target: 'http://localhost:5555/api'
+      payload:
+        path: "metars.csv"
+        order: random
+        skipHeader: true
+        fields:
+          - "Name"
       plugins:
         statsd:
           host: localhost
@@ -24,4 +30,4 @@ scenarios:
   - name: Metars
     flow:
       - get:
-          url: '/metar?station=SAEZ'
+          url: '/metar?station={{ Name }}'

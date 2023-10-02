@@ -20,13 +20,12 @@ const retriveMetars = async (metarConfig: MetarConfig) : Promise<{ statusCode: n
     const xmlParser = new XMLParser();
     const response = (xmlParser.parse(result.data) as any).response;
     
-    if (response.data) { // Respuesta exitosa
-        return { statusCode: httpStatus.OK, data: response.data.METAR };
-    } 
-    
-    if (response.errors) { // Respuesta fallida
-        const error: Error = { code: '', error: '', message: response.errors.error };
-        return { statusCode: httpStatus.BAD_REQUEST, error };
+    if (result.status === httpStatus.OK) {        
+        if (response.data) { // Respuesta exitosa
+            return { statusCode: httpStatus.OK, data: response.data.METAR };
+        }
+        return { statusCode: httpStatus.OK, data: [] };
+
     }
     console.log(response);
     const error = { code: 'internal_server_error', error: 'Internal Server Error', message: 'An internal error occurred during processing' };
