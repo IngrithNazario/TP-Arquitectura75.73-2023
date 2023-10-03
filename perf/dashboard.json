@@ -85,7 +85,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Scenarios launched (stacked)",
+      "title": "Scenarios launched",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -99,12 +99,14 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:633",
           "format": "rps",
           "label": "",
           "logBase": 1,
           "show": true
         },
         {
+          "$$hashKey": "object:634",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -144,10 +146,10 @@
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sideWidth": 250,
@@ -179,16 +181,6 @@
           "refCount": 0,
           "refId": "A",
           "target": "alias(stats.gauges.$server.codes.200, 'Ok')"
-        },
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
-          },
-          "refCount": 0,
-          "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Connection Errors')",
-          "textEditor": true
         },
         {
           "datasource": {
@@ -237,11 +229,21 @@
           "refCount": 0,
           "refId": "G",
           "target": "alias(stats.gauges.$server.codes.504, 'Gateway Timeout')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Connection Errors')",
+          "textEditor": true
         }
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Requests State (stacked)",
+      "title": "Requests State",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -294,11 +296,11 @@
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": true,
         "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sideWidth": 250,
@@ -343,7 +345,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response Time (Client Side)",
+      "title": "Response Time (Client)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -357,6 +359,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:152",
           "format": "ms",
           "label": "",
           "logBase": 1,
@@ -364,6 +367,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:153",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -396,11 +400,11 @@
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": true,
         "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sideWidth": 250,
@@ -457,7 +461,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response Time (Services)",
+      "title": "Response Time (Service)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -513,11 +517,11 @@
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": true,
         "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sideWidth": 250,
@@ -574,7 +578,7 @@
       ],
       "thresholds": [],
       "timeRegions": [],
-      "title": "Response Time (External Services)",
+      "title": "Response Time (External Service)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -633,11 +637,11 @@
       "legend": {
         "alignAsTable": true,
         "avg": true,
-        "current": true,
+        "current": false,
         "hideEmpty": true,
         "hideZero": false,
         "max": true,
-        "min": false,
+        "min": true,
         "rightSide": true,
         "show": true,
         "sideWidth": 250,
@@ -658,6 +662,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:387",
           "alias": "asPercent(stats.gauges.cadvisor.tp-arquitectura7573-2023-node-1.memory_usage, 1952000000)",
           "yaxis": 1
         }
@@ -704,12 +709,14 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:394",
           "format": "percent",
           "logBase": 1,
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:395",
           "format": "Bps",
           "logBase": 1,
           "show": true
@@ -834,6 +841,6 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 20,
+  "version": 30,
   "weekStart": ""
 }
