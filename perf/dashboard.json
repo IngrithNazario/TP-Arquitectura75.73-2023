@@ -178,7 +178,7 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.$server.codes.200, 'Completed')"
+          "target": "alias(stats.gauges.$server.codes.200, 'Ok')"
         },
         {
           "datasource": {
@@ -187,7 +187,7 @@
           },
           "refCount": 0,
           "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
+          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Connection Errors')",
           "textEditor": true
         },
         {
@@ -206,7 +206,37 @@
           },
           "refCount": 0,
           "refId": "D",
-          "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
+          "target": "alias(stats.gauges.$server.codes.429, 'Too Many Requests')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "E",
+          "target": "alias(stats.gauges.$server.codes.403, 'Forbidden')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "F",
+          "target": "alias(stats.gauges.$server.codes.500, 'Internal Error')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "a6e983b2-f26b-4cb3-afa2-3e94660be588"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "G",
+          "target": "alias(stats.gauges.$server.codes.504, 'Gateway Timeout')"
         }
       ],
       "thresholds": [],
@@ -225,11 +255,13 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:278",
           "format": "short",
           "logBase": 1,
           "show": true
         },
         {
+          "$$hashKey": "object:279",
           "format": "short",
           "logBase": 1,
           "show": true
@@ -389,7 +421,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -506,7 +538,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -802,6 +834,6 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 15,
+  "version": 20,
   "weekStart": ""
 }

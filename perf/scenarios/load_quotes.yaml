@@ -1,0 +1,50 @@
+config:
+  environments:
+    api:
+      target: 'http://localhost:5555/api'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  # Se aumenta progresivamente la carga sobre el sistema
+  # Se mandan pocas requests porque la API de Quotes esta limitada a 180 requests por segundo
+  # No aguanta mucha carga si viene de la misma IP a costa de mejorar la performance la la API
+  phases: 
+    # Warm up
+    - name: Plain (30)
+      duration: 30
+      arrivalCount: 30
+    - name: Plain (15)
+      duration: 15
+      arrivalCount: 10
+    - name: Plain (15)
+      duration: 15
+      arrivalCount: 15
+    # Load
+    - name: Plain (60)
+      duration: 60
+      arrivalCount: 90
+    - name: Plain (120)
+      duration: 60
+      arrivalCount: 120
+    - name: Plain (150)
+      duration: 60
+      arrivalCount: 150
+    - name: Plain (180)
+      duration: 60
+      arrivalCount: 180
+    # Cool down
+    - name: Ramp down (3 to 1) in 60 seconds
+      duration: 60
+      arrivalRate: 3
+      rampTo: 1
+
+scenarios:
+  - name: Quotes
+    flow:
+      - get:
+          url: '/quote'

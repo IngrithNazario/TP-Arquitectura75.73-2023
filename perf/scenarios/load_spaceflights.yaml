@@ -43,36 +43,36 @@ config:
       duration: 30
       arrivalRate: 60
       rampTo: 120
-    - name: Plain (120)
-      duration: 30
-      arrivalRate: 120
-    - name: Ramp up (120 to 240)
-      duration: 30
-      arrivalRate: 120
-      rampTo: 240
-    - name: Plain (240)
-      duration: 30
-      arrivalRate: 240
-    - name: Ramp up (240 to 280)
-      duration: 15
-      arrivalRate: 240
-      rampTo: 280
+    # - name: Plain (120)
+    #   duration: 30
+    #   arrivalRate: 120
+    # - name: Ramp up (120 to 240)
+    #   duration: 30
+    #   arrivalRate: 120
+    #   rampTo: 240
+    # - name: Plain (240)
+    #   duration: 30
+    #   arrivalRate: 240
+    # - name: Ramp up (240 to 280)
+    #   duration: 15
+    #   arrivalRate: 240
+    #   rampTo: 280
     # Desde aca se esta cerca del fallo porque la API METARs empieza a bloquear las requests
-    - name: Plain (280)
-      duration: 15
-      arrivalRate: 280
+    # - name: Plain (280)
+    #   duration: 15
+    #   arrivalRate: 280
     # Cool down
-    - name: Ramp down (280 to 20) in 60 seconds
-      duration: 60
-      arrivalRate: 280
-      rampTo: 20
+    # - name: Ramp down (280 to 20) in 60 seconds
+    #   duration: 60
+    #   arrivalRate: 280
+    #   rampTo: 20
     - name: Plain (20 to 1) in 60 seconds
       duration: 60
       arrivalRate: 20
       rampTo: 1
 
 scenarios:
-  - name: Metars
+  - name: Spaceflights
     flow:
       - get:
-          url: '/metar?station={{ Name }}'
+          url: '/spaceflight_news'
