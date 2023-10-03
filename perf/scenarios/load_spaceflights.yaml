@@ -45,9 +45,13 @@ config:
       arrivalRate: 60
       rampTo: 20
     # Cool down
-    - name: Cool down (20 to 1) in 60 seconds
+    - name: Cool down (20 to 10) in 60 seconds
       duration: 60
       arrivalRate: 20
+      rampTo: 10
+    - name: Cool down (10 to 1) in 60 seconds
+      duration: 60
+      arrivalRate: 10
       rampTo: 1
 
 scenarios:
