@@ -20,9 +20,8 @@ const retrieveArticles = async (articlesConfig: ArticlesConfig): Promise<{ statu
     if (response.status === httpStatus.OK) {
         return { statusCode: httpStatus.OK, data };
     }
-    console.log(data);
-    const error = { code: 'internal_server_error', error: 'Internal Server Error', message: 'An internal error occurred during processing' };
-    return { statusCode: httpStatus.INTERNAL_SERVER_ERROR, error };
+    const error = { code: '', error: response.statusText, message: '' };
+    return { statusCode: response.status, error };
 }
 
 const _makeURL = (articlesConfig: ArticlesConfig) => {
