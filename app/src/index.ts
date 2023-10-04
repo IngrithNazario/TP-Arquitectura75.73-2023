@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { router } from './routers';
+import { redisClient } from './utils';
 
 // Antes de ejecutar algun script se necesitan las dependencias
 // Ejecutar npm install
@@ -15,9 +16,9 @@ import { router } from './routers';
  */
 
 const PORT = 3000;
-
 const app = express();
 app.use(express.static("client")); // TODO: Eliminar, no creo que haga falta si no existe un directorio client con archivos que el servidor deba entregar.
 app.use(bodyParser.urlencoded({extended: false})); // TODO: Eliminar, no creo que haga falta, todos son verbos GET, no hay cuerpos en las peticiones.
 app.use('', router);
 app.listen(PORT, () => { console.log(`Server running at :${PORT}`)});
+redisClient.connect();

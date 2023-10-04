@@ -44,6 +44,10 @@ services:
             - "/var/run:/var/run:rw"
             - "/sys:/sys:ro"
             - "/var/lib/docker/:/var/lib/docker:ro"
+    
+    redis:
+        image: redis:7
+
 
 volumes:
     grafana_config:

@@ -12,7 +12,7 @@ const getArticles = (_request: Request, response: Response) => {
                 limit: 5,
                 ordering: '-published_at',
             }
-        
+
             const articles = await articlesService.getArticles(articlesConfig);
             if (articles.statusCode === httpStatus.OK) {
                 const data = articles.data;

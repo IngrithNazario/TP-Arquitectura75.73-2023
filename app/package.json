@@ -21,6 +21,7 @@
     "hot-shots": "^10.0.0",
     "http-status": "^1.7.0",
     "metar-decoder": "^1.0.3",
+    "redis": "^4.6.10",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "zod": "^3.22.2"

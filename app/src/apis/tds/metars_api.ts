@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
 import httpStatus from 'http-status';
-import { Error, executionTime, statsdClient } from '../../utils';
+import { Error, executionTime, redisClient, statsdClient } from '../../utils';
 
 const baseURL = 'https://www.aviationweather.gov';
 const pathURL = 'adds/dataserver_current/httpparam';
@@ -15,16 +15,27 @@ interface MetarConfig {
 const retriveMetars = async (metarConfig: MetarConfig) : Promise<{ statusCode: number, data: any } | { statusCode: number, error: Error }> => {
     const url = _makeURL(metarConfig);
     const timeProcessor = (milliseconds: number) => statsdClient.gauge('external-service.metars', milliseconds);
+
+    // Se revisa primero el cache de Redis
+    const redisGet = executionTime.get(redisClient.get);
+    const { result: cachedData, milliseconds } = await redisGet(JSON.stringify(metarConfig));
+    if (cachedData) {
+        timeProcessor(milliseconds);
+        return { statusCode: httpStatus.OK, data: JSON.parse(cachedData) };
+    }
+
     const axiosGet = executionTime.measure(axios.get, timeProcessor);
     const result = await axiosGet(url, { validateStatus: () => true });
     const xmlParser = new XMLParser();
     const response = (xmlParser.parse(result.data) as any).response;
     
     if (result.status === httpStatus.OK) {
+        let data = [];
         if (response.data) { // Respuesta exitosa
-            return { statusCode: httpStatus.OK, data: response.data.METAR };
+            data = response.data.METAR;
         }
-        return { statusCode: httpStatus.OK, data: [] };
+        redisClient.set(JSON.stringify(metarConfig), JSON.stringify(data), { EX: 30 });
+        return { statusCode: httpStatus.OK, data };
     }
     if (result.status === httpStatus.FORBIDDEN) {
         const error = { code: 'Forbidden', error: 'Forbidden', message: 'You don\'t have permission to access' };

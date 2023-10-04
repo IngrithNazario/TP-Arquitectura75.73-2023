@@ -1,6 +1,6 @@
 import axios from 'axios';
 import httpStatus from 'http-status';
-import { Error, executionTime, statsdClient } from '../../utils';
+import { Error, executionTime, redisClient, statsdClient } from '../../utils';
 
 const baseURL = 'https://api.quotable.io';
 const pathURL = 'quotes/random';
@@ -12,10 +12,19 @@ interface QuotesConfig {
 const retrieveQuotes = async (quotesConfig: QuotesConfig): Promise<{ statusCode: number, data: any } | { statusCode: number, error: Error }> => {
     const url = _makeURL(quotesConfig);
     const timeProcessor = (milliseconds: number) => statsdClient.gauge('external-service.quotes', milliseconds);
+
+    // Se revisa primero el cache de Redis
+    const redisGet = executionTime.get(redisClient.get);
+    const { result: cachedData, milliseconds } = await redisGet('quotes_api');
+    if (cachedData) {
+        timeProcessor(milliseconds);
+        return { statusCode: httpStatus.OK, data: JSON.parse(cachedData) };
+    }
+
     const axiosGet = executionTime.measure(axios.get, timeProcessor);
     const response = await axiosGet(url, { validateStatus: () => true });
-
     const data = response.data;
+    redisClient.set('quotes_api', JSON.stringify(data), { EX: 1 });
     if (response.status === httpStatus.OK) {
         return { statusCode: response.status, data };
     }

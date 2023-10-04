@@ -27,6 +27,7 @@ config:
       duration: 15
       arrivalRate: 30
       rampTo: 20
+    # Ya llegando al final de esta carga empieza haber problemas en las conexiones, apenas completa el warm up
     - name: Ramp up (20 to 30)
       duration: 15
       arrivalRate: 20
@@ -36,7 +37,6 @@ config:
       duration: 30
       arrivalRate: 30
       rampTo: 60
-    # Ya a partir de aca empieza haber problemas en las conexiones, el servidor no procesa suficientemente rapido
     - name: Plain (60)
       duration: 30
       arrivalRate: 60
