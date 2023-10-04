@@ -4,6 +4,8 @@ services:
 
     node:
         build: ./app
+        deploy:
+            replicas: 3
         
     nginx:
         image: nginx:1.25.2
